@@ -1,0 +1,51 @@
+interrupção 10h:
+
+A interrupção 10h é usada para manipular funções de vídeo no nível do BIOS. Ela oferece diversos serviços para controlar a saída de vídeo, como escrever caracteres, posicionar o cursor, etc.
+
+Serviços oferecidos:
+
+    00h -> Definir o modo de vídeo (texto ou gráfico).
+    01h	-> Definir o formato do cursor.
+    02h	-> Posicionar o cursor.
+    03h	-> Obter a posição do cursor.
+    06h	-> Rolar a tela para cima.
+    07h	-> Rolar a tela para baixo.
+    08h	-> Ler o caractere e seu atributo no cursor.
+    09h	-> Escrever o caractere com atributo na posição do cursor (sem mover o cursor).
+    0Eh	-> Exibir um caractere no modo teletipo (avança o cursor automaticamente).
+    10h	-> Alterar a paleta de cores no modo gráfico.
+    12h	-> Definir o plano de cores (EGA/VGA).
+
+Passagem de parâmetros:
+
+Os parâmetros são passados pelos registradores do processador antes de chamar a interrupção. Cada serviço utiliza diferentes registradores para configurar suas funções.
+
+    AH: Contém o código do serviço, geralmente o mais usado.
+    AL: Muitas vezes contém informações adicionais, como o caractere a ser exibido.
+    BH: Especifica o número da página de vídeo (aplicável a alguns serviços).
+    CH, CL, DH, DL: Usados para coordenadas, dimensões ou atributos dependendo do serviço.
+
+Arquitetura do processador 8086 e o mecanismo de interrupção:
+
+Como funciona o mecanismo de interrupção no 8086?
+
+No 8086, uma interrupção é um mecanismo de hardware/software que pausa a execução normal do programa para tratar um evento especial. Existem 256 interrupções possíveis, acionadas por:
+
+    1. Interrupções de hardware: Sinais vindos de dispositivos externos.
+    2. Interrupções de software: Instruções INT <número> no código.
+    3. Interrupções de exceção: Ocasionadas por erros (ex.: divisão por zero).
+
+Quais são os registradores envolvidos no processo de interrupção?
+
+    CS: Segmento de código. O valor atual é salvo na pilha e substituído pelo endereço do manipulador de interrupção.
+    IP: Ponteiro de instrução. O valor atual é salvo na pilha e substituído pelo deslocamento do manipulador de interrupção.
+    FLAGS: O registrador de flags é salvo na pilha para restaurar o estado após a interrupção.
+
+Como a pilha é utilizada durante uma interrupção?
+
+Quando uma interrupção é acionada:
+
+    O processador empilha automaticamente:
+        O valor de FLAGS.
+        O valor de CS (segmento de código).
+        O valor de IP (endereço da próxima instrução a ser executada).

@@ -34,7 +34,7 @@
 00000000000i[IMG   ] Disk image modules
 00000000000i[IMG   ]   flat concat sparse dll growing undoable volatile vmware3
 00000000000i[IMG   ]   vmware4 vbox vpc vvfat
-00000000000i[MEM0  ] allocated memory at 0x713d1ca00010. after alignment, vector=0x713d1ca01000, block_size = 128K
+00000000000i[MEM0  ] allocated memory at 0x701726a00010. after alignment, vector=0x701726a01000, block_size = 128K
 00000000000i[MEM0  ] 32,00MB
 00000000000i[MEM0  ] mem block size = 0x00020000, blocks=256
 00000000000i[MEM0  ] rom at 0xfffe0000/131072 ('/home/lucas-andrei/usr/share/bochs/BIOS-bochs-latest')
@@ -46,7 +46,7 @@
 00000000000i[PLUGIN] init_dev of 'cmos' plugin device by virtual method
 00000000000i[CMOS  ] CMOS RTC using realtime synchronisation method
 00000000000i[CMOS  ] Using local time for initial clock
-00000000000i[CMOS  ] Setting initial clock to: Thu Dec  5 21:55:56   2024 tz=utc (time0=1733435756)
+00000000000i[CMOS  ] Setting initial clock to: Sat Dec  7 12:56:25   2024 tz=utc (time0=1733576185)
 00000000000i[PLUGIN] init_dev of 'dma' plugin device by virtual method
 00000000000i[DMA   ] channel 4 used by cascade
 00000000000i[PLUGIN] init_dev of 'pic' plugin device by virtual method
@@ -212,5 +212,5 @@
 00001497451i[BXVGA ] VBE known Display Interface b0c0
 00001497491i[BXVGA ] VBE known Display Interface b0c5
 00001498912i[VBIOS ] VBE Bios ID: vbe.c 2024-06-09
-01468086563i[BIOS  ] Booting from 0000:7c00
-01468087568i[CPU0  ] WARNING: HLT instruction with IF=0!
+01481906973i[BIOS  ] Booting from 0000:7c00
+01481907114i[CPU0  ] WARNING: HLT instruction with IF=0!

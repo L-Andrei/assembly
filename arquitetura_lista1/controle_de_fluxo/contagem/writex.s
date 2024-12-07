@@ -5,23 +5,25 @@
 _start:
     movw $0, %bx
 
+    #Subrotina que realiza o incremento e print de bx
 contagem:
-    addw $1,%bx
-    movw %bx, %ax
-    cmpw $10,%bx
+    addw $1,%bx             #Aumenta bx em 1
+    movw %bx, %ax           #Move bx para ax
+    cmpw $10,%bx            #Verifica se bx é 10
     je print_10
     
-
+    #Realiza o print do número
 print:
-    addw $48, %ax
-    movb $0x0e, %ah
+    addw $48, %ax           #Converte o número para o seu respectivo na tabela ascii.
+    movb $0x0e, %ah         
     int $0x10
     movb $'\n', %al
     movb $0x0e, %ah
     int $0x10
-    jmp contagem
+    jmp contagem            #Volta para a contagem
 
-print_10:
+    #Imprime o número de ao final da contagem até 9
+print_10:       
     movb $'1' , %al
     movb $0x0e, %ah
     int $0x10

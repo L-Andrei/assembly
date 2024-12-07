@@ -3,31 +3,31 @@
 .globl _start
 
 _start:
-    lea str1, %si
-    lea str2, %di
+    lea str1, %si               #Carrega o endereço da string 1.
+    lea str2, %di               #Carrega o endereço da string 2.
     call concatenar
     call print_string
     jmp end               
 
 concatenar:
-    movb (%si), %al
+    movb (%si), %al             #Lê o byte atual de str1 no registrador %al.
 
-    cmpb $0,%al
+    cmpb $0,%al                 #Verifica se o byte atual não é "\0"
     je concatenar_pt2
 
-    inc %si
+    inc %si                     #Avança para a proxima letra da string
 
     jmp concatenar
 
 concatenar_pt2:
-    movb (%di), %ah
-    movb %ah, (%si)
+    movb (%di), %ah             #Lê o byte atual de str2 no registrador ah.
+    movb %ah, (%si)             #Escreve o byte de str2 na posição atual de str1.
 
-    cmpb $0, %ah
+    cmpb $0, %ah                 #Verifica se o byte atual não é "\0"
     je concatenar_end
 
-    inc %di
-    inc %si
+    inc %di                     #Incrementa di para avançar ao próximo caractere de str2.
+    inc %si                     #Incrementa si para avançar na posição final de str1.
 
     jmp concatenar_pt2
     
@@ -35,16 +35,16 @@ concatenar_end:
     ret
 
 print_string:   
-    lea str1, %si
+    lea str1, %si               #Carrega o endereço de memoria de str1 em si
 
 print_string_pt2:
-    movb (%si),%al
+    movb (%si),%al              #Move o valor do endereço de si para al
     movb $0x0e, %ah
-    int $0x10
+    int $0x10                   #Realiza o print desse valor.
 
-    inc %si
+    inc %si                     #Avança para a próxima letra de str1.
 
-    cmpb $0, (%si)
+    cmpb $0, (%si)              #Verifica se a string não acabou.
     je print_string_end
     jmp print_string_pt2
 

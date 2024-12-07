@@ -6,7 +6,7 @@
 
 _start:
     lea array, %si          # Aponta para o início do array
-    movb tamanho, %cl       # Carrega o tamanho do array em %cl
+    movb tamanho, %cl       # Carrega o tamanho do array em cl
     dec %cl                 # Decrementa o contador de elementos (pois começa do índice 0)
     
     call bubble_sort        # Chama a função de ordenação Bubble Sort
@@ -19,22 +19,22 @@ _start:
 
 # Função Bubble Sort (ordem crescente)
 bubble_sort:
-    push %si                 # Salva %si
+    push %si                 # Salva si
     push %cx                 # Salva o tamanho
-    movb tamanho, %bl       # Copia o tamanho em %bl (para o loop interno)
+    movb tamanho, %bl       # Copia o tamanho em bl (para o loop interno)
 
 outer_loop:
-    xor %di, %di            # Zera o índice interno (%di)
+    xor %di, %di            # Zera o índice interno di
     lea array, %si          # Aponta novamente para o início do array
-    movb %cl, %dl           # Copia o número de elementos restantes em %dl
+    movb %cl, %dl           # Copia o número de elementos restantes em dl
 
 inner_loop:
-    movb (%si), %al         # Carrega o valor atual em %al
-    movb 1(%si), %ah        # Carrega o próximo valor em %ah
+    movb (%si), %al         # Carrega o valor atual em al
+    movb 1(%si), %ah        # Carrega o próximo valor em ah
     cmpb %al, %ah           # Compara os dois valores
-    jge no_swap             # Se %al >= %ah, não faz a troca
+    jge no_swap             # Se al >= ah, não faz a troca
 
-    # Troca os valores de %al e %ah
+    # Troca os valores de al e ah
     xchg %al, %ah
     movb %al, (%si)         # Coloca o menor valor no primeiro
     movb %ah, 1(%si)        # Coloca o maior valor no segundo
@@ -47,20 +47,20 @@ no_swap:
     dec %cl                 # Decrementa o contador de passagens
     jnz outer_loop          # Repete o loop externo até ordenar o array
 
-    pop %cx                  # Restaura %cl
-    pop %si                  # Restaura %si
+    pop %cx                  # Restaura cl
+    pop %si                  # Restaura si
     ret
 
 # Função de impressão
 print_loop:
-    movb (%si), %al         # Carrega o valor atual em %al
-    addb $48, %al           # Converte para caractere ASCII
+    movb (%si), %al         # Carrega o valor atual em al
+    addb $48, %al           
     mov $0x0e, %ah          # Configura o serviço de impressão
     int $0x10               # Chama a interrupção de vídeo
 
-    inc %si                 # Incrementa %si para o próximo elemento
+    inc %si                 # Incrementa si para o próximo elemento
     dec %cx                 # Decrementa o contador
-    jnz print_loop          # Continua até que %cx seja zero
+    jnz print_loop          
 
     ret
 

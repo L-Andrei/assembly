@@ -3,16 +3,17 @@
 .globl _start
 
 _start:
-    lea numeros, %si     
-    movw tamanho, %cx    
-    xor %ax, %ax         
-    xor %bx, %bx          
+    lea numeros, %si     #Carague o endereço do primeiro numero do array
+    movw tamanho, %cx    #Carrega o tamanho do array
+    xor %ax, %ax         #Limpa ax
+    xor %bx, %bx         #Limpa bx 
 
 soma_array:
-    addw (%bx, %si), %ax   
-    addw $2, %bx            
+    addw (%bx, %si), %ax   #Adiciona um número do array em ax
+    addw $2, %bx           #Avança para o proximo número do array 
     loop soma_array         
 
+    #impime o resultado da soma dos números do array
 print_valor:   
 
    movw %ax , resultado 
